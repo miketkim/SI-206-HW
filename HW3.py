@@ -35,16 +35,22 @@ def parse_counted_words(x):
 
 ## PART 2: 200 points
 
-## We have provided a text file computer_paths.txt. It's not incredibly long -- you can scan through it, but do NOT hard code your answers! Each line contains 1 filesystem path.
+file = open("computer_paths.txt", "r")
+paths = file.read()
+print (paths)
 
 ## (a) Write Python code to determine how many of these paths identify FILES, not directories. Save that number in the variable file_paths_num.
-
+files = re.findall(r"\b(\.)", paths)
+file_paths_num = len(files)
 ## (b) Write Python code to determine how many of these paths are FULL paths, not relative paths. Save that number in the variable full_paths_num.
-
+fullpaths= re.findall(r"(Users|~)", paths)
+full_paths_num = len(fullpaths)
 ## (c) Write Python code to determine how many of these paths describe a Python file saved inside a folder called SI206. Save that number in the variable python_course_paths.
-
+SI206= re.findall(r"SI206\/(\w)+.py", paths)
+python_course_paths = len(SI206)
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
-
+Microsoft= re.findall(r"[0-9](\.xlsx|.docx)", paths)
+microsoft_files_num = len(Microsoft)
 
 
 
